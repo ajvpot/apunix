@@ -4,6 +4,7 @@ services:
   build:
     build: .
     volumes:
-      - ./appliance.nix:/appliance.nix:ro
+      - ./configuration.nix:/configuration.nix:ro
       - ./out:/out
-    command: sh -c "nixos-generate -f raw -c /appliance.nix; cp -r /result/* /out"
+    privileged: true
+    command: sh -c "nixos-generate -f raw -c /configuration.nix; cp -r /nix/store/*-nixos-disk-image/* /out; chmod -R 777 /out"
