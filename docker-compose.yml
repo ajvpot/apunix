@@ -6,4 +6,4 @@ services:
     volumes:
       - ./appliance.nix:/appliance.nix:ro
       - ./out:/out
-    command: sh -c "nix-build appliance.nix; cp -r /result/* /out"
+    command: sh -c "nixos-generate -f raw -c /appliance.nix; cp -r /result/* /out"
