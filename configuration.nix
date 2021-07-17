@@ -1,8 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, modules, ... }:
 {
-    imports = [
+imports = [
       <nixos-hardware/pcengines/apu>
-    ];
+      ];
   services.sshd.enable = true;
   services.nginx.enable = true;
 

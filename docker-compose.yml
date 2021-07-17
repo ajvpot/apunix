@@ -5,6 +5,7 @@ services:
     build: .
     volumes:
       - ./configuration.nix:/configuration.nix:ro
+      - ./format.nix:/format.nix:ro
       - ./out:/out
     privileged: true
-    command: sh -c "nixos-generate -f raw -c /configuration.nix; cp -r /nix/store/*-nixos-disk-image/* /out; chmod -R 777 /out"
+    command: sh -c "nixos-generate --format-path /format.nix -c /configuration.nix; rm /out/*; cp -r /nix/store/*-nixos-disk-image/* /out; chmod -R 777 /out"
